@@ -1,0 +1,41 @@
+{
+  "name": "ecolearnia-account",
+  "version": "0.0.1",
+  "description": "EcoLearnia's Account Service",
+  "main": "el-account.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecolearnia/ecolearnia-account.git"
+  },
+  "keywords": [
+    "ecolearnia",
+    "education",
+    "gamification",
+    "platform",
+    "authentication"
+  ],
+  "author": "Young-Suk Ahn Park",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecolearnia/ecolearnia-account/issues"
+  },
+  "homepage": "https://github.com/ecolearnia/ecolearnia-account",
+  "dependencies": {
+    "async": "^1.2.1",
+    "bluebird": "^2.9.30",
+    "bunyan": "^1.4.0",
+    "hapi": "^8.6.1",
+    "lodash": "^3.9.3",
+    "mongoose": "^4.0.5",
+    "nconf": "^0.7.1"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1",
+    "sinon": "^1.15.3"
+  }
+}
