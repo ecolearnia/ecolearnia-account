@@ -92,11 +92,28 @@ Later:
   defines the different permission rules.
 - Integration with [Clever](https://clever.com/)
 
+## Hapi server skeleton (temporary)
+
+For the tiem being, there is a very basic HTTP server based on Hapi framework.
+The file `./el-account.js` contains boilerplate code for configuring and 
+running a Hapi server which contains a custom plugin defined in the file
+ `./lib/index.js`.
+The custom plugin is where the actual logic should go.
+
+In our case, each of the REST endpoints, for example
+
+- /account (POST) - to Create a new account
+- /account (PUT) - to Delete an existing account
+- /signin (POST) - to sign-in
+- /signout (POST) - to sign-out
+
+For further documentation on how the Hapi rout is defined, refer to the 
+[Hapi documentation](http://hapijs.com/tutorials/routing).
 
 
 ## References (Pointers to learning materials)
 
-### Hapi Framwork
+### Hapi Framework
 - The official Hapi website's [Getting Started](http://hapijs.com/tutorials/getting-started)
 - From RisginStack [Getting Started with Hapi 8](http://blog.risingstack.com/getting-started-with-hapi-8/)
 - [The Pursuit of Hapi-ness](https://medium.com/@_expr/the-pursuit-of-hapi-ness-d82777afaa4b)

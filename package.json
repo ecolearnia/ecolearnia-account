@@ -27,7 +27,12 @@
     "async": "^1.2.1",
     "bluebird": "^2.9.30",
     "bunyan": "^1.4.0",
+    "ecofyjs-config": "git://github.com/ecolearnia/ecofyjs-config.git",
+    "ecofyjs-exception": "git://github.com/ecolearnia/ecofyjs-exception.git",
+    "ecofyjs-logger-facade": "git://github.com/ecolearnia/ecofyjs-logger-facade.git",
+    "handlebars": "^3.0.3",
     "hapi": "^8.6.1",
+    "hoek": "^2.14.0",
     "lodash": "^3.9.3",
     "mongoose": "^4.0.5",
     "nconf": "^0.7.1"
