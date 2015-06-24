@@ -110,6 +110,28 @@ In our case, each of the REST endpoints, for example
 For further documentation on how the Hapi rout is defined, refer to the 
 [Hapi documentation](http://hapijs.com/tutorials/routing).
 
+### To install & run the server ###
+
+The easiest way to install the EL-A is to clone the repository from github
+
+`git clone https://github.com/ecolearnia/ecolearnia-account.git`
+
+After cloned, go the ecolearnia-account directory and install the dependencies
+
+`npm install`
+
+If you have error, it may be related to file system write privileges. Try 
+running as root.
+
+The installation command should have should have downloaded all dependnecies 
+in node_modules folder.
+
+Now, make sure that there is no application usin the port 8088, and run the 
+server with:
+
+`node el-account.js`
+
+You can configure the port to listen by changing the ./config/el-account.conf.log
 
 ## References (Pointers to learning materials)
 

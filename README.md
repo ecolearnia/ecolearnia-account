@@ -60,9 +60,9 @@ The system is based on Nodejs and [hapi framework](http://hapijs.com/).
 - For debugging, you will also require node-inspector.
 
 
-### Downloading and building
+### Downloading and installing
 
-The easiest way to install the EL-S is to clone the repository from github
+The easiest way to install the EL-A is to clone the repository from github
 
 `git clone https://github.com/ecolearnia/ecolearnia-account.git`
 
