@@ -14,6 +14,11 @@ server.connection(
     }
   );
 
+// Since Hapi 10.0, the view engine and directory has been externalized
+// In order to use them, they must be explicilty included and registered.
+server.register(require('vision'), function () {});
+server.register(require('inert'), function () {});
+
 server.register([
       { register: require("./lib/index"), options: { log: logConf} }
 ], function(err) {

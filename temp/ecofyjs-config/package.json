@@ -1,0 +1,39 @@
+{
+  "name": "ecofyjs-config",
+  "version": "0.0.1",
+  "description": "Config facade",
+  "main": "lib/config.js",
+  "scripts": {
+    "test": "mocha -u tdd  --recursive --reporter spec test --timeout 40000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecolearnia/ecofyjs-config.git"
+  },
+  "keywords": [
+    "config"
+  ],
+  "author": {
+    "name": "Young Suk Ahn Park"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecolearnia/ecofyjs-config/issues"
+  },
+  "homepage": "https://github.com/ecolearnia/ecofyjs-config",
+  "dependencies": {
+    "ecofyjs-exception": "git://github.com/ecolearnia/ecofyjs-exception.git",
+    "nconf": "^0.7.1"
+  },
+  "devDependencies": {
+    "chai": "^3.0.0",
+    "mocha": "^2.2.5"
+  },
+  "gitHead": "1192ea9e09524e407578955dab72b700e0bb634f",
+  "readme": "ERROR: No README data found!",
+  "_id": "ecofyjs-config@0.0.1",
+  "_shasum": "f1f81a95ce068d911dc6bffd8625178d0a4707f4",
+  "_from": "git://github.com/ecolearnia/ecofyjs-config.git",
+  "_resolved": "git://github.com/ecolearnia/ecofyjs-config.git#1192ea9e09524e407578955dab72b700e0bb634f",
+  "_fromGithub": true
+}
