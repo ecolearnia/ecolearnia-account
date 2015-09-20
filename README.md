@@ -103,6 +103,9 @@ The server configuration file is `config/el-account.conf.json`.
 
 ## Running the Server
 
+In order for Google+ authentication to work, the environment var GOOGLE_CLIENT_SECRET must be properly set:
+`export GOOGLE_CLIENT_SECRET=<the-secret-here>`
+
 To run in normal mode:
 `node el-account.js`
 

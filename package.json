@@ -25,6 +25,7 @@
   "homepage": "https://github.com/ecolearnia/ecolearnia-account",
   "dependencies": {
     "async": "^1.4.2",
+    "bell": "^5.1.0",
     "bluebird": "^2.10.0",
     "bunyan": "^1.5.1",
     "ecofyjs-config": "git://github.com/altenia/ecofyjs-config.git",
