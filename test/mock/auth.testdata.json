@@ -1,0 +1,17 @@
+{
+    
+    "authSource": "google",
+    "authId": "MY-GOOGLE-ID",
+    "authCredentialsRaw": "The.profile.data",
+    "authCredentialsTimestamp": "2012-05-27",
+    "status": 1,
+
+    "rememberToken": "TST_TOKEN",
+
+    "password": "MY_PASSWORD",
+    "activationCode": "ACTIV-CODE",
+    "securityQuestion": "SEC-QUESTION",
+    "securityAnswer": "MY-ANS",
+    "sessionTimestamp": "2012-05-27",
+    "authFailCounter": 0
+}
