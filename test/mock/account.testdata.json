@@ -19,7 +19,8 @@
         "timezone": "America",
         "permalink": "",
 
-        "languages": "en",
+        "guardians": [],
+        "languages": ["en"],
 
         "education": {
             "lastLevel": "college"

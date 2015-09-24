@@ -14,7 +14,7 @@ var DbUtils = require('../../../lib/utils/mongoutils').MongoUtils;
 var manager = require('../../../lib/providers/accountmanager');
 
 // Test data
-var testauthdata = require('../../mock/account.testdata.json');
+var testaccountdata = require('../../mock/account.testdata.json');
 
 
 config.load('./config/test.conf.json');
@@ -280,8 +280,24 @@ describe('AccountManager', function () {
 		});
 	});
 
+
+	describe('Other operations', function () {	
+
+		describe.skip('findByEmail', function () {	
+			it('should return auth with account given criteria that matches entry', function (done) {
+			});
+
+			it('should return empty given criteria that does not matche any entry', function (done) {
+			});
+
+			it.skip('should reject with bad something', function (done) {
+			});
+		});
+
+	});
+
 	function generateTestAccount(kind, roles) {
-		var testdata = lodash.cloneDeep(testauthdata);
+		var testdata = lodash.cloneDeep(testaccountdata);
 		delete testdata.uuid;
 		testdata.kind = kind;
 		testdata.roles = roles;

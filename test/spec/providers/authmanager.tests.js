@@ -16,6 +16,9 @@ var manager = require('../../../lib/providers/authmanager');
 // Test data
 var testauthdata = require('../../mock/auth.testdata.json');
 
+var testaccountdata = require('../../mock/account.testdata.json');
+
+
 
 config.load('./config/test.conf.json');
 
@@ -102,7 +105,7 @@ describe('AuthManager', function () {
 		});
 
 		afterEach(function (done) {
-			deleteAllAndDone(testManager, done);
+			deleteAllAndDone(testManager, null, done);
 		});
 
 		describe('Read resource', function () {
@@ -200,7 +203,7 @@ describe('AuthManager', function () {
 			});
 
 			afterEach(function (done) {
-				deleteAllAndDone(testManager, done);
+				deleteAllAndDone(testManager, null, done);
 			});
 		
 			it('should update', function (done) {
@@ -280,18 +283,189 @@ describe('AuthManager', function () {
 		});
 	});
 
-	function generateTestAuth(authSource, authId, status) {
+	describe('Other operations', function () {	
+
+		describe('findFromCredentials', function () {
+
+			beforeEach(function (done) {
+				// Prepare 
+				addAuthWithAccount('TEST-authSource1', 'TEST-authId1', 5, function(error, data){
+					if (error) {
+						done(error);
+					}
+					done();
+				});
+			});
+
+			afterEach(function (done) {
+				deleteAllAndDone(testManager, null, done);
+			});
+
+			it('should return auth with account given criteria that matches entry', function (done) {
+
+				// Act
+				var test_authSource = 'TEST-authSource1';
+				var test_authId = 'TEST-authId1';
+				var authCriteria = generateTestAuth(test_authSource, test_authId, 2)
+				testManager.findFromCredentials(authCriteria)
+				.then(function(result){
+					// Assert
+					//console.log('--' + JSON.stringify(result, null, 2));
+					expect(result.authSource).to.equal(test_authSource);
+					expect(result.authId).to.equal(test_authId);
+					expect(result.status).to.equal(5);
+					expect(result.accountObject).to.not.null;
+					expect(result.accountObject.displayName).to.equal(testaccountdata.displayName);
+					done();
+				})
+				.catch(function(error){
+					done(error);
+				});
+
+			});
+
+			it('should return empty given authSource not match any entry', function (done) {
+				var test_authSource = 'TEST-authSource-NONEXIST';
+				var test_authId = 'TEST-authId';
+				var authCriteria = generateTestAuth(test_authSource, test_authId, 2)
+				testManager.findFromCredentials(authCriteria)
+				.then(function(result){
+					// Assert
+					expect(result).to.be.undefined;
+					done();
+				})
+				.catch(function(error){
+					done(error);
+				});
+			});
+
+			it('should return empty given authId not match any entry', function (done) {
+				var test_authSource = 'TEST-authSource';
+				var test_authId = 'TEST-authId-NONEXISTS';
+				var authCriteria = generateTestAuth(test_authSource, test_authId, 2)
+				testManager.findFromCredentials(authCriteria)
+				.then(function(result){
+					// Assert
+					expect(result).to.be.undefined;
+					done();
+				})
+				.catch(function(error){
+					done(error);
+				});
+			});
+
+			it.skip('should reject with something bad', function (done) {
+			});
+		});
+
+
+		describe('createAccountAndAuth', function () {	
+
+			afterEach(function (done) {
+				deleteAllAndDone(testManager, null, done);
+			});
+
+			it('should create account and auth if new', function (done) {
+
+				var test_authSource = 'TEST-authSource2';
+				var test_authId = 'TEST-authId2';
+				var testAuth = generateTestAuth(test_authSource, test_authId, 6);
+				var testAccount = lodash.cloneDeep(testaccountdata);
+				testAccount.displayName = 'Test2';
+
+				testManager.createAccountAndAuth(testAccount, testAuth )
+				.then(function(result){
+					// Assert
+					expect(result.authSource).to.equal(test_authSource);
+					expect(result.authId).to.equal(test_authId);
+					expect(result.accountObject.displayName).to.equal(testAccount.displayName);
+					done();
+				})
+				.catch(function(error){
+					done(error);
+				});
+			});
+
+			describe('given account that alredy exists ', function () {
+				beforeEach(function (done) {
+					// Prepare 
+					var testAccount = lodash.cloneDeep(testaccountdata);
+					testAccount.displayName = 'TEST-NAME';
+					testAccount.emails = ['myemail@email.com', 'myemail2@email.com'];
+					testManager.getAccountManager().add(testAccount)
+					.then( function(model1) {
+						done();
+					})
+					.catch(function(error) {
+						done(error);
+					});
+				});
+
+				it('should reuse account and create auth', function (done) {
+					var test_authSource = 'TEST-authSource2';
+					var test_authId = 'TEST-authId2';
+					var testAuth = generateTestAuth(test_authSource, test_authId, 6);
+					var testAccount = lodash.cloneDeep(testaccountdata);
+					testAccount.displayName = 'I-ALREADY-EXIST';
+					testAccount.emails = ['myemail@email.com'];
+
+					testManager.createAccountAndAuth(testAccount, testAuth )
+					.then(function(result){
+						// Assert
+						//console.log('--' + JSON.stringify(result, null, 2));
+
+						expect(result.authSource).to.equal(test_authSource);
+						expect(result.authId).to.equal(test_authId);
+						// Notice that this is the displayName of the original account
+						expect(result.accountObject.displayName).to.equal('TEST-NAME');
+						done();
+					})
+					.catch(function(error){
+						done(error);
+					});
+				});
+			});
+
+			it.skip('should reject with bad something', function (done) {
+			});
+		});
+	});
+
+	function addAuthWithAccount(authSource, authId, status, callback) {
+		testManager.getAccountManager().add(testaccountdata)
+		.then( function(model1) {
+			// @todo - add account model
+			testManager.add(generateTestAuth(authSource, authId, status, model1._id))
+			.then( function(model2) {
+				callback(null, model2);
+			});
+		})
+		.catch( function(error) {
+			callback(error, null);
+		});
+	}
+
+	function generateTestAuth(authSource, authId, status, accountOid) {
 		var testdata = lodash.cloneDeep(testauthdata);
 		delete testdata.uuid;
 		testdata.authSource = authSource;
 		testdata.authId = authId;
 		testdata.status = status;
 
+		if (accountOid) {
+			testdata.account = accountOid;
+		}
+
 		return testdata;
 	}
 
-	function deleteAllAndDone(provider, done)
+	/**
+	 * Delets all record
+	 * NOTE: this will cause problem when multiple tests are run concurrently!!
+	 */
+	function deleteAllAndDone(provider, uuids, done)
 	{
+		// @todo if uuids were provided, delete only those in the uuid
 		delete_(provider, {})
 			.then( function(model) {
 				done();
@@ -311,7 +485,9 @@ describe('AuthManager', function () {
 				uuid: criteria
 			}
 		}
+		provider.getAccountManager().remove(criteria);
 		return provider.remove(criteria);
+
 	}
 });
 
