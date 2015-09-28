@@ -1,0 +1,10 @@
+PENDING:
+
+- JWT Token
+- initialize db with root account
+- Redirect to site URL
+- Account ETag
+- keep alive endpoint
+- auth & account manager UI
+- Role & Permission
+- Facebook signup

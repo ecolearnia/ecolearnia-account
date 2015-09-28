@@ -186,7 +186,7 @@ describe('AccountManager', function () {
 					//delete resources[0].uuid;
 					testManager.add(resources[0])
 					.then( function(model1) {
-						model = model1;
+						//model = model1;
 						done();
 					})
 					.catch( function(error) {
@@ -283,11 +283,48 @@ describe('AccountManager', function () {
 
 	describe('Other operations', function () {	
 
-		describe.skip('findByEmail', function () {	
-			it('should return auth with account given criteria that matches entry', function (done) {
+		beforeEach(function (done) {
+			delete_(testManager, {})
+			.then( function(model) {
+				
+				// Create one for updating 
+				//delete resources[0].uuid;
+				testManager.add(generateTestAccount('TEST-kind', ['TEST-roles]'], ['test@mail.net']))
+				.then( function(model1) {
+					done();
+				})
+				.catch( function(error) {
+					done(error);
+				});
+			})
+			.catch( function(error) {
+				console.log('** ERROR on delete! **' +  JSON.stringify(error));
+				done(error);
+			});
+		});
+		describe('findByEmail', function () {	
+			it('should return account given criteria that matches entry', function (done) {
+
+				testManager.findByEmail('test@mail.net')
+				.then( function(resourceFound) {
+					expect(resourceFound).to.not.null;
+					expect(resourceFound.kind).to.equal('TEST-kind');
+					done();
+				})
+				.catch( function(error) {
+					done(error);
+				});
 			});
 
-			it('should return empty given criteria that does not matche any entry', function (done) {
+			it('should return empty given criteria that does not match any entry', function (done) {
+				testManager.findByEmail('UNEXISTENT-MAIL.net')
+				.then( function(resourceFound) {
+					expect(resourceFound).to.null;
+					done();
+				})
+				.catch( function(error) {
+					done(error);
+				});
 			});
 
 			it.skip('should reject with bad something', function (done) {
@@ -296,11 +333,14 @@ describe('AccountManager', function () {
 
 	});
 
-	function generateTestAccount(kind, roles) {
+	function generateTestAccount(kind, roles, emails) {
 		var testdata = lodash.cloneDeep(testaccountdata);
 		delete testdata.uuid;
 		testdata.kind = kind;
 		testdata.roles = roles;
+		if (emails) {
+			testdata.profile.emails = emails;
+		}
 		
 		return testdata;
 	}

@@ -7,7 +7,7 @@
 	},
 
 	"log": {
-		"level": "warn",
+		"level": "debug",
 		"name": "Test",
 		"streams": [
 			{
