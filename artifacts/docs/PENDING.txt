@@ -1,10 +1,12 @@
 PENDING:
 
-- JWT Token
-- initialize db with root account
-- Redirect to site URL
-- Account ETag
-- keep alive endpoint
+- (OK) JWT Token
+- (OK) initialize db with root account
+- (OK) Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')
 - auth & account manager UI
+- secure endpoints
+- token refresh endpoint
+- Account ETag
+- Clever signup
 - Role & Permission
 - Facebook signup

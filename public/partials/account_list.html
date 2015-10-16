@@ -1,0 +1,10 @@
+Hello there
+<div >
+  <ul class="unstyled">
+    <li class="ng-cloack" ng-repeat="account in accountCtrl.accounts">
+      {{account.displayName}} - 
+      <span ng-bind="account.profile.emails" />
+    </li>
+  </ul>
+  
+</div>
