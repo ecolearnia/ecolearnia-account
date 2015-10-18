@@ -26,7 +26,7 @@
   "dependencies": {
     "async": "^1.4.2",
     "bell": "^5.1.0",
-    "bluebird": "^2.10.0",
+    "bluebird": "^2.10.2",
     "bunyan": "^1.5.1",
     "ecofyjs-config": "git://github.com/altenia/ecofyjs-config.git",
     "ecofyjs-exception": "git://github.com/altenia/ecofyjs-exception.git",
