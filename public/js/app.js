@@ -1,6 +1,6 @@
 // When second argument (array) is provided then this becomes a definition,
 // otherwise it is a loading
-angular.module('adminApp', ['ngRoute', 'account'])
+angular.module('adminApp', ['ngRoute', 'account', 'ngMaterial'])
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
       //template: '<h5>This is the default route</h5>'
@@ -8,7 +8,12 @@ angular.module('adminApp', ['ngRoute', 'account'])
       templateUrl:'/public/partials/account_list.html'
     })
     .when('/account/:accountId', {
-      template: '<h5>This is the second route</h5>'
+      controller: 'AccountController as accountCtrl',
+      templateUrl:'/public/partials/account_details.html'
+    })
+    .when('/account/:accountId/form', {
+      controller: 'AccountController as accountCtrl',
+      templateUrl:'/public/partials/account_form.html'
     })
     .otherwise({redirectTo: '/'});
   }]);

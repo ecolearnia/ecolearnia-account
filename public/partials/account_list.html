@@ -1,10 +1,23 @@
-Hello there
 <div >
-  <ul class="unstyled">
-    <li class="ng-cloack" ng-repeat="account in accountCtrl.accounts">
-      {{account.displayName}} - 
-      <span ng-bind="account.profile.emails" />
-    </li>
-  </ul>
+    List
+
+    <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+        <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">img</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+      <tbody>
+        <tr class="ng-cloack" ng-repeat="account in accountCtrl.accounts">
+            <td><img ng-show="account.imageUrl != undefined" src={{account.imageUrl}} /></td>
+            <td><a href="#/account/{{account.uuid}}" ><span ng-bind="account.displayName" /></a></td>
+            <td>{{account.createdAt | date:'shortDate'}}</td>
+            <td><a href="#/account/{{account.uuid}}/form" >Edit</a></td>
+        </tr>
+    </tbody>
+    </table>
   
 </div>
