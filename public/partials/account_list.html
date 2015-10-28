@@ -1,12 +1,23 @@
 <div >
-    List
+    
+  <md-toolbar class="md-info">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Accounts</h2> 
+        <md-button class="md-fab md-mini" aria-label="Add" ng-click="accountCtrl.go('/account/new/form')">
+            Add
+        </md-button>
+    </div>
+  </md-toolbar>
 
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
         <thead>
             <tr>
-              <th class="mdl-data-table__cell--non-numeric">img</th>
+              <th class="mdl-data-table__cell--non-numeric">Pic</th>
               <th>Name</th>
-              <th>Date</th>
+              <th>Status</th>
+              <th>Roles</th>
+              <th>Last Visit</th>
+              <th>Since</th>
               <th>Action</th>
             </tr>
         </thead>
@@ -14,10 +25,18 @@
         <tr class="ng-cloack" ng-repeat="account in accountCtrl.accounts">
             <td><img ng-show="account.imageUrl != undefined" src={{account.imageUrl}} /></td>
             <td><a href="#/account/{{account.uuid}}" ><span ng-bind="account.displayName" /></a></td>
+            <td>{{account.status}}</td>
+            <td>{{account.roles}}</td>
+            <td>{{account.lastLogin | date:'shortDate'}}</td>
             <td>{{account.createdAt | date:'shortDate'}}</td>
             <td><a href="#/account/{{account.uuid}}/form" >Edit</a></td>
         </tr>
     </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="7">Pagination</td>
+      </tr>
+    </tfoot>
     </table>
   
 </div>

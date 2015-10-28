@@ -1,40 +1,63 @@
-Account
 <div >
+
+  <md-toolbar class="md-info">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">{{accountCtrl.account.displayName}}</h2>
+    </div>
+  </md-toolbar>
   
   <md-content layout-padding>
-    <form name="accountForm">
+    <form name="accountForm" ng-submit="accountCtrl.submit()">
       <div layout layout-sm="column">
-        <md-input-container style="width:70%">
-          <label>User UUID (Disabled)</label>
-          <input ng-model="accountCtrl.account.displayName" disabled>
+        <md-input-container flex>
+          <label>Display name</label>
+          <input ng-model="accountCtrl.account.displayName" >
         </md-input-container>
-        <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+        <md-input-container flex>
+          <label>User UUID (Disabled)</label>
+          <input ng-model="accountCtrl.account.uuid" disabled>
+        </md-input-container>
       </div>
       <div layout layout-sm="column">
         <md-input-container flex>
           <label>First name</label>
-          <input ng-model="accountCtrl.account.givenName">
+          <input ng-model="accountCtrl.account.profile.givenName">
         </md-input-container>
         <md-input-container flex>
           <label>Last Name</label>
-          <input ng-model="accountCtrl.account.givenName">
+          <input ng-model="accountCtrl.account.profile.familyName">
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Mobile</label>
+          <input ng-model="accountCtrl.account.profile.mobile">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Phone</label>
+          <input ng-model="accountCtrl.account.profile.phone">
         </md-input-container>
       </div>
       <md-input-container flex>
-        <label>Address</label>
-        <input ng-model="user.address">
+      <label>Language</label>
+      <md-chips
+        ng-model="accountCtrl.account.profile.languages"
+        placeholder="Enter a language"
+        secondary-placeholder="+Language">
+      </md-chips>
       </md-input-container>
-      <md-input-container md-no-float>
-        <input ng-model="user.address2" placeholder="Address 2">
+      <md-input-container flex>
+        <label>Address</label>
+        <input ng-model="accountCtrl.account.profile.address.street">
       </md-input-container>
       <div layout layout-sm="column">
         <md-input-container flex>
           <label>City</label>
-          <input ng-model="user.city">
+          <input ng-model="accountCtrl.account.profile.address.city">
         </md-input-container>
         <md-input-container flex>
           <label>State</label>
-          <md-select ng-model="user.state">
+          <md-select ng-model="accountCtrl.account.profile.address.stateCode">
             <md-option ng-repeat="state in states" value="{{state.abbrev}}">
               {{state.abbrev}}
             </md-option>
@@ -42,7 +65,7 @@ Account
         </md-input-container>
         <md-input-container flex>
           <label>Postal Code</label>
-          <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+          <input name="postalCode" ng-model="accountCtrl.account.profile.address.postalCode" placeholder="12345"
                  required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
           <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
             <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -50,15 +73,16 @@ Account
               code.
             </div>
             <div ng-message="md-maxlength" class="my-message">
-              Don't use the long version silly...we don't need to be that specific...
+              5 number code
             </div>
           </div>
         </md-input-container>
       </div>
       <md-input-container flex>
-        <label>Biography</label>
-        <textarea ng-model="user.highlight" columns="1" md-maxlength="150"></textarea>
+        <label>Highlight</label>
+        <textarea ng-model="accountCtrl.account.profile.highlight" columns="1" md-maxlength="150"></textarea>
       </md-input-container>
+      <md-button class="md-raised">Update</md-button>
     </form>
   </md-content>
   

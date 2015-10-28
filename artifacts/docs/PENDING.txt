@@ -1,5 +1,7 @@
 PENDING:
 
+WIP: id and password for new account
+
 - (OK) JWT Token
 - (OK) initialize db with root account
 - (OK) Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')

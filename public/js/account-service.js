@@ -3,7 +3,10 @@ accountModule.factory('AccountResource', ['$resource', function($resource) {
 
 	var basePath = '/accounts';
 
-	return $resource(basePath + '/:id'); // Note the full endpoint address
+	return $resource(basePath + '/:id', {},
+		{
+	        'update': { method:'PUT' }
+	    });
 	/*
 	this.list = function() {
 	    // initialize
