@@ -1,5 +1,7 @@
 var app = angular.module('adminApp');
-app.controller('AccountController', ['$routeParams', '$location', 'AccountResource', function($routeParams, $location, AccountResource) {
+app.controller('AccountController', ['$routeParams', '$location', 'AccountResource'
+    , function($routeParams, $location, AccountResource) 
+{
 
     var self = this;
     self.accounts = [];
@@ -18,6 +20,13 @@ app.controller('AccountController', ['$routeParams', '$location', 'AccountResour
 
     this.go = function(path) {
         $location.path( path );
+    };
+
+    /**
+     * Is any user selected?
+     */
+    this.selectedAccount = function() {
+        return self.account;
     };
 
     this.getAccount = function(id) {

@@ -1,0 +1,66 @@
+<!doctype html>
+<html ng-app="loginApp">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.4/angular-material.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.4/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+
+    <!-- Custom JS -->
+    <script src="js/account-service.js"></script>
+    <script src="js/login.js"></script>
+
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+		<md-toolbar class="md-primary ">
+	    <div class="md-toolbar-tools">
+	      <h2 class="md-flex">EcoLearnia Account</h2> 
+	    </div>
+	  </md-toolbar>
+  	<md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
+    <md-card style="width: 300px" ng-controller="LoginController as loginCtrl">
+    <!-- social icons -->
+	    <md-toolbar class="md-primary md-hue-2">
+		    <div class="md-toolbar-tools">
+		      
+		      <h2 class="md-flex"><span>Login</span></h2> 
+		      <span flex></span>
+		      <md-icon md-svg-src="img/icons/ic_input_white_24px.svg"></md-icon>
+		    </div>
+		  </md-toolbar>
+
+      <md-card-content>
+        <md-button style="width:40%; background-color: #3b5998; color:#fff" ng-click="">Facebook</md-button>
+        <md-button style="width:40%; background-color: #DC4E41; color:#fff" ng-click="loginCtrl.go('/auth/google')">Google+</md-button>
+	    </md-input-container>
+
+      <md-card-content>
+        <md-input-container md-no-float>
+	      <!-- Use floating label instead of placeholder -->
+	      Username
+	      <input ng-model="user.name" type="text" placeholder="">
+	    </md-input-container>
+
+	    <md-input-container md-no-float>
+	      Password
+	      <input ng-model="user.password" type="text" placeholder="">
+	    </md-input-container>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="center">
+        <md-button>Sign in</md-button>
+        <md-button>Sign up</md-button>
+      </div>
+    </md-card>
+    
+  </md-content>
+    
+  </body>
+</html>

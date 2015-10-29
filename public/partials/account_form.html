@@ -14,7 +14,7 @@
           <input ng-model="accountCtrl.account.displayName" >
         </md-input-container>
         <md-input-container flex>
-          <label>User UUID (Disabled)</label>
+          <label>System ID (UUID)</label>
           <input ng-model="accountCtrl.account.uuid" disabled>
         </md-input-container>
       </div>
@@ -82,7 +82,8 @@
         <label>Highlight</label>
         <textarea ng-model="accountCtrl.account.profile.highlight" columns="1" md-maxlength="150"></textarea>
       </md-input-container>
-      <md-button class="md-raised">Update</md-button>
+      <md-button class="md-raised" ng-if="accountCtrl.account">Update</md-button>
+      <md-button class="md-raised" ng-if="!accountCtrl.account">Sign up</md-button>
     </form>
   </md-content>
   

@@ -16,4 +16,9 @@ angular.module('adminApp', ['ngRoute', 'account', 'ngMaterial'])
       templateUrl:'/public/partials/account_form.html'
     })
     .otherwise({redirectTo: '/'});
-  }]);
+  }])
+.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('green')
+    .accentPalette('orange');
+});
