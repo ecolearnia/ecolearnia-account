@@ -1,24 +1,36 @@
 // When second argument (array) is provided then this becomes a definition,
 // otherwise it is a loading
-angular.module('adminApp', ['ngRoute', 'account', 'ngMaterial'])
+angular.module('mainApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
 .config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {
+    $routeProvider.when('/login', {
       //template: '<h5>This is the default route</h5>'
-      controller: 'AccountController as accountCtrl',
-      templateUrl:'/public/partials/account_list.html'
+      controller: 'SigninController as signinCtrl',
+      templateUrl:'/public/partials/signin.html'
     })
-    .when('/account/:accountId', {
+    .when('/home', {
       controller: 'AccountController as accountCtrl',
       templateUrl:'/public/partials/account_details.html'
     })
-    .when('/account/:accountId/form', {
+    .when('/me/profile', {
       controller: 'AccountController as accountCtrl',
       templateUrl:'/public/partials/account_form.html'
     })
-    .otherwise({redirectTo: '/'});
+    .otherwise({redirectTo: '/login'});
   }])
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('green')
     .accentPalette('orange');
-});
+})
+.controller('FrameController', ['$location', 'AuthService'
+    , function($location, AuthService) 
+{
+  var self = this;
+  AuthService.fetchMyAccount()
+  .then(function(account) {
+    self.session = account;
+  })
+  .catch(function(error) {
+
+  })
+}]);

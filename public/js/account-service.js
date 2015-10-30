@@ -1,7 +1,7 @@
 var accountModule = angular.module('account', ['ngResource']);
 accountModule.factory('AccountResource', ['$resource', function($resource) {
 
-	var basePath = '/accounts';
+	var basePath = '/api/accounts';
 
 	return $resource(basePath + '/:id', {},
 		{

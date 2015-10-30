@@ -1,6 +1,7 @@
 PENDING:
 
 WIP: id and password for new account
+WIP: signin API
 
 - (OK) JWT Token
 - (OK) initialize db with root account

@@ -40,6 +40,7 @@ server.register(require('hapi-auth-jwt2'), function (err) {
         // always return valid
         return callback(null, true);
     };
+    
     /**
      *
      */

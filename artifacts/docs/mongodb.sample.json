@@ -1,0 +1,14 @@
+use ecol_test
+
+db.auths.update({"username": "root"}, 
+	{
+		"authSource": "local",
+		"authId": "root",
+		username: 'root',
+		account: ObjectId("5619b6a10b5ec82d08023089"),
+		"status": 1,
+		"uuid": "160495ad-892d-455c-bfbf-874cc61460e5",
+		security: { password: 'root'}
+	} );
+
+(authSource = "local" AND authId = "NONe") OR (authSource = "local" AND username="root")

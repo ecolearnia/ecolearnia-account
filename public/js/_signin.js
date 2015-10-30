@@ -1,6 +1,6 @@
 // When second argument (array) is provided then this becomes a definition,
 // otherwise it is a loading
-angular.module('loginApp', ['account', 'ngMaterial'])
+angular.module('mainApp', ['account', 'ngMaterial'])
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('green')

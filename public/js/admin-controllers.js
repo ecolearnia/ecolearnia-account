@@ -1,20 +1,19 @@
 var app = angular.module('adminApp');
-app.controller('AccountController', ['$routeParams', '$location', 'AccountResource'
-    , function($routeParams, $location, AccountResource) 
+app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'AuthService', 'AccountResource'
+    , function($cookies, $routeParams, $location, AuthService, AccountResource) 
 {
-
     var self = this;
     self.accounts = [];
     self.account;
 
     if ($routeParams.accountId && $routeParams.accountId != 'new') {
     	self.account = AccountResource.get({id: $routeParams.accountId}, function(data) {
-            // nothing to do
+            // nothing to do, data is updated when async is returned.
         });
     } else {
 	    // initialize
 	    self.accounts = AccountResource.query(function(data) {
-            // nothing to do 
+            // nothing to do, data is updated when async is returned.
         });
 	}
 
@@ -51,24 +50,6 @@ app.controller('AccountController', ['$routeParams', '$location', 'AccountResour
             };
             newAccount.$save();
         }
-    };
-
-}]);
-
-app.controller('AccountDetailsController', ['$routeParams', 'AccountResource', function($routeParams, AccountResource) {
-
-    var self = this;
-    self.accounts = [];
-    self.account;
-
-    // initialize
-    self.accounts = AccountResource.query();
-
-    this.getAccount = function(id) {
-    	self.account = AccountResource.get(id);
-    	if (!self.account) {
-    		alert ('Not found for ' + id);
-    	}
     };
 
 }]);
