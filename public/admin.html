@@ -24,32 +24,32 @@
   <body  ng-controller="FrameController as frameCtrl" ng-cloack>
 
     <md-toolbar class="md-primary">
-    <div class="md-toolbar-tools">
-        <h2 class="md-flex">Ecofy Identity - Admin</h2>
-        <span flex></span>
-        <!--<md-icon md-svg-src="img/icons/ic_person_black_24px.svg"></md-icon>-->
-        {{ frameCtrl.session.displayName }}
-        
-        <!-- Account Menu -->
-        <md-menu>
-            <md-button aria-label="Open account menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" md-position-mode="target-right target">
-            <img src="{{frameCtrl.session.imageUrl}}" />
-            </md-button>
-            <md-menu-content width="4">
-            <md-menu-item>
-              <md-button ng-click="ctrl.profile($event)">
-                Account Profile
-              </md-button>
-            </md-menu-item>
-            <md-menu-divider></md-menu-divider>
-            <md-menu-item>
-              <md-button ng-click="ctrl.signout()">
-                Sign out
-              </md-button>
-            </md-menu-item>
-            </md-menu-content>
-        </md-menu>
-    </div>
+        <div class="md-toolbar-tools">
+            <h2 class="md-flex">Ecofy Identity - Admin</h2>
+            <span flex></span>
+            <!--<md-icon md-svg-src="img/icons/ic_person_black_24px.svg"></md-icon>-->
+            {{ frameCtrl.session.displayName }}
+            
+            <!-- Account Menu -->
+            <md-menu>
+                <md-button aria-label="Open account menu" class="md-icon-button" ng-click="$mdOpenMenu($event)" md-position-mode="target-right target">
+                <img src="{{frameCtrl.session.imageUrl}}" />
+                </md-button>
+                <md-menu-content width="4">
+                <md-menu-item>
+                  <md-button ng-click="frameCtrl.profile($event)">
+                    Account Profile
+                  </md-button>
+                </md-menu-item>
+                <md-menu-divider></md-menu-divider>
+                <md-menu-item>
+                  <md-button ng-click="frameCtrl.signout()">
+                    Sign out
+                  </md-button>
+                </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </div>
     </md-toolbar>
 
     <div ng-view></div>

@@ -1,15 +1,14 @@
 PENDING:
 
-WIP: id and password for new account
-WIP: signin API
 
-- (OK) JWT Token
 - (OK) initialize db with root account
 - (OK) Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')
-- auth & account manager UI
-- secure endpoints
+- (WIP) secure endpoints
+- (WIP) auth & account manager UI
 - token refresh endpoint
+- id and password for new account
 - Account ETag
 - Clever signup
 - Role & Permission
 - Facebook signup
+- Role permissions

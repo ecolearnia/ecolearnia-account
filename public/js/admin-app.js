@@ -22,8 +22,8 @@ angular.module('adminApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
     .primaryPalette('green')
     .accentPalette('orange');
 })
-.controller('FrameController', ['$location', 'AuthService'
-    , function($location, AuthService) 
+.controller('FrameController', ['$window', 'AuthService'
+    , function($window, AuthService) 
 {
   var self = this;
 
@@ -34,4 +34,15 @@ angular.module('adminApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
   .catch(function(error) {
 
   });
+
+  this.signout = function() {
+    AuthService.signout()
+    .then(function(data) {
+      $window.location.href = '/public/main.html#/login';
+    })
+    .catch(function(error) {
+      alert(JSON.stringify(error, null, 2));
+    });
+
+  }
 }]);

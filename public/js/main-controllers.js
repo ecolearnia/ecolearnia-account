@@ -1,6 +1,6 @@
 var app = angular.module('mainApp');
-app.controller('SigninController', ['$routeParams', '$location', 'AuthService', 
-    function($routeParams, $location, AuthService)
+app.controller('SigninController', ['$window', '$location', 'AuthService', 
+    function($window, $location, AuthService)
 {
 
     var self = this;
