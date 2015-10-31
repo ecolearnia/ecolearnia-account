@@ -6,7 +6,7 @@ accountModule.service('AuthService', ['$q', '$http', '$cookies', 'AccountResourc
     var basePath = '/api';
 
     this.ecofyToken = null; // Same as the cookie('ecofy_token')
-    this.session = null;
+    this.account = null;
 
     var COOKIE_NAME = 'ecofy_token';
 
@@ -14,42 +14,6 @@ accountModule.service('AuthService', ['$q', '$http', '$cookies', 'AccountResourc
         path: '/'
     };
 
-    /**
-     * @param {Object} credentials: {username, password}.
-     */
-    this.signin = function(credentials) {
-
-        return $http.post(basePath + '/signin', credentials)
-        .then(function(response) {
-            if (response.data) {
-                // @todo - set cookie
-                self.ecofyToken = response.data.token;
-                //$cookies.set('ecofy_token', this.ecofyToken);
-                self.setSession(response.data.auth.accountObject);
-                return self.getSession();
-            } else {
-                // Login failed (bad id or password)
-                return null;
-            } 
-        })
-        .catch(function(error) {
-            // Error wrapped by $http containing config, data, status, statusMessage, etc.
-            //if (error.data)
-            throw error;
-        });
-    };
-
-    this.signout = function() {
-        return $http({
-                    method: 'POST',
-                    url: basePath + '/signout',
-                    headers: { 'Authorization': self.getToken() }
-                })
-        .then(function(response) {
-            self.setToken(null);
-            self.setAccount(null);
-        });
-    };
 
     /**
      * isAuthenticated
@@ -87,15 +51,55 @@ accountModule.service('AuthService', ['$q', '$http', '$cookies', 'AccountResourc
      * getAccount
      */
     this.getAccount = function() {
-        return this.session;
+        return this.account;
     }
 
     /**
      *
      */
     this.setAccount = function(account) {
-        this.session = account;
+        this.account = account;
     }
+
+    this.setSession = function(token, account) {
+        this.setToken(token);
+        this.setAccount(account);
+    }
+
+    /**
+     * @param {Object} credentials: {username, password}.
+     */
+    this.signin = function(credentials) {
+
+        return $http.post(basePath + '/signin', credentials)
+        .then(function(response) {
+            if (response.data) {
+                self.setSession(response.data.token, response.data.auth.accountObject);
+                return self.getAccount();
+            } else {
+                // Login failed (bad id or password)
+                return null;
+            } 
+        })
+        .catch(function(error) {
+            // Error wrapped by $http containing config, data, status, statusMessage, etc.
+            //if (error.data)
+            throw error;
+        });
+    };
+
+    this.signout = function() {
+        return $http({
+                    method: 'POST',
+                    url: basePath + '/signout',
+                    headers: { 'Authorization': self.getToken() }
+                })
+        .then(function(response) {
+            self.setToken(null);
+            self.setAccount(null);
+        });
+    };
+
 
     /**
      * fetchMyAccount

@@ -9,11 +9,15 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
     if ($routeParams.accountId && $routeParams.accountId != 'new') {
     	self.account = AccountResource.get({id: $routeParams.accountId}, function(data) {
             // nothing to do, data is updated when async is returned.
+        }, function(error) {
+            alert(JSON.stringify(error));
         });
     } else {
 	    // initialize
 	    self.accounts = AccountResource.query(function(data) {
             // nothing to do, data is updated when async is returned.
+        }, function(error) {
+            alert(JSON.stringify(error));
         });
 	}
 

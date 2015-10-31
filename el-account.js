@@ -72,7 +72,8 @@ server.register(require('hapi-auth-jwt2'), function (err) {
             }
         },
         {
-            method: 'GET', path: '/restricted', config: { auth: 'jwt' },
+            method: 'GET', path: '/restricted', 
+            config: { auth: 'jwt' },
             handler: function(request, reply) {
                 console.log('--token:' + request.headers.authorization);
                 reply({text: 'You used a Token!'})

@@ -3,7 +3,7 @@ PENDING:
 
 - (OK) initialize db with root account
 - (OK) Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')
-- (WIP) secure endpoints
+- (WIP) secure endpoints (simple RBAC)
 - (WIP) auth & account manager UI
 - token refresh endpoint
 - id and password for new account
