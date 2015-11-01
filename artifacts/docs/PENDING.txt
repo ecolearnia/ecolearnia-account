@@ -1,14 +1,14 @@
 PENDING:
 
 
-- (OK) initialize db with root account
 - (OK) Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')
-- (WIP) secure endpoints (simple RBAC)
-- (WIP) auth & account manager UI
+- (OK) secure endpoints (simple RBAC)
+- (WIP) local login with password match
+- (WIP) auth & account manager UI (crud)
+- update initialize db with root account (security property refactoring)
 - token refresh endpoint
 - id and password for new account
 - Account ETag
 - Clever signup
-- Role & Permission
 - Facebook signup
-- Role permissions
+- Advanced Role permissions

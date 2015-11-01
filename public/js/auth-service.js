@@ -1,6 +1,10 @@
-var accountModule = angular.module('account');
-accountModule.service('AuthService', ['$q', '$http', '$cookies', 'AccountResource', 
-    function($q, $http, $cookies, AccountResource)
+var accountModule = angular.module('account', ['ngResource']);
+
+/**
+ * Service that provides Authentication facility  
+ */
+accountModule.service('AuthService', ['$q', '$http', '$cookies', 
+    function($q, $http, $cookies)
 {
     var self = this;
     var basePath = '/api';

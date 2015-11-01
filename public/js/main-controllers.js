@@ -17,13 +17,12 @@ app.controller('SigninController', ['$window', '$location', 'AuthService',
     };
 
     this.signin = function() {
-        //$location.path( path );
         AuthService.signin(self.credentials)
         .then(function(authenticated) {
             // authenticated
             if (authenticated) {
                 self.errorMessage = null;
-                $location.path( '#/home' );
+                self.redir( '/public/admin.html' );
             } else {
                 self.errorMessage = 'Invalid username or password';
             }
@@ -34,6 +33,7 @@ app.controller('SigninController', ['$window', '$location', 'AuthService',
             } 
             self.errorMessage = JSON.stringify(error, null, 2);
         });
+        //$location.path( path );
     };
 
 }]);

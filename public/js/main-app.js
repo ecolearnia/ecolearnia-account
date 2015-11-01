@@ -1,5 +1,6 @@
-// When second argument (array) is provided then this becomes a definition,
-// otherwise it is a loading
+/**
+ * The main application module
+ */
 angular.module('mainApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
 .config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/login', {
@@ -17,11 +18,19 @@ angular.module('mainApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
     })
     .otherwise({redirectTo: '/login'});
   }])
+
+/**
+ * For the Angular matrial design
+ */
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('green')
     .accentPalette('orange');
 })
+
+/**
+ * Frame controller than handles the account in session
+ */
 .controller('FrameController', ['$location', 'AuthService'
     , function($location, AuthService) 
 {

@@ -14,14 +14,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
 
     <!-- Custom JS -->
-    <script src="js/account-service.js"></script>
     <script src="js/auth-service.js"></script>
+    <script src="js/account-service.js"></script>
     <script src="js/admin-app.js"></script>
     <script src="js/admin-controllers.js"></script>
 
     <link rel="stylesheet" href="css/main.css">
   </head>
-  <body  ng-controller="FrameController as frameCtrl" ng-cloack>
+  <body class="ng-cloack" ng-controller="FrameController as frameCtrl">
 
     <md-toolbar class="md-primary">
         <div class="md-toolbar-tools">
@@ -37,7 +37,7 @@
                 </md-button>
                 <md-menu-content width="4">
                 <md-menu-item>
-                  <md-button ng-click="frameCtrl.profile($event)">
+                  <md-button ng-click="frameCtrl.showProfile()">
                     Account Profile
                   </md-button>
                 </md-menu-item>

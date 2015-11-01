@@ -17,11 +17,19 @@ angular.module('adminApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
     })
     .otherwise({redirectTo: '/'});
   }])
+
+/**
+ * For the Angular matrial design
+ */
 .config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('green')
     .accentPalette('orange');
 })
+
+/**
+ * Frame controller than handles the account in session
+ */
 .controller('FrameController', ['$window', 'AuthService'
     , function($window, AuthService) 
 {
@@ -35,6 +43,16 @@ angular.module('adminApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
 
   });
 
+  this.showProfile = function() {
+    AuthService.fetchMyAccount()
+    .then(function(account) {
+      $window.location.href = '/public/admin.html#/account/' + account.uuid + '/form';
+    })
+    .catch(function(error) {
+      alert(JSON.stringify(error, null, 2));
+    });
+  }
+
   this.signout = function() {
     AuthService.signout()
     .then(function(data) {
@@ -43,6 +61,6 @@ angular.module('adminApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
     .catch(function(error) {
       alert(JSON.stringify(error, null, 2));
     });
-
   }
+
 }]);
