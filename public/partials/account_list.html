@@ -34,7 +34,7 @@
             <td>{{account.modifiedAt | date:'shortDate'}}</td>
             <td>
               <a href="#/account/{{account.uuid}}/form" >Edit</a>
-              <a ng-click="accountCtrl.remove(account.uuid)" >Delete</a>
+              <a ng-click="accountCtrl.remove(account)" >Delete</a>
             </td>
         </tr>
     </tbody>

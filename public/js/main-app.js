@@ -8,6 +8,10 @@ angular.module('mainApp', ['ngRoute', 'ngCookies', 'account', 'ngMaterial'])
       controller: 'SigninController as signinCtrl',
       templateUrl:'/public/partials/signin.html'
     })
+    .when('/signup', {
+      controller: 'SignupController as signupCtrl',
+      templateUrl:'/public/partials/signup.html'
+    })
     .when('/home', {
       controller: 'AccountController as accountCtrl',
       templateUrl:'/public/partials/account_details.html'

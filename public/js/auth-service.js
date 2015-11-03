@@ -71,6 +71,28 @@ accountModule.service('AuthService', ['$q', '$http', '$cookies',
     }
 
     /**
+     * @param {Object} account: {username, password}.
+     */
+    this.signup = function(account) {
+
+        return $http.post(basePath + '/signup', account)
+        .then(function(response) {
+            if (response.data) {
+                self.setSession(response.data.token, response.data.auth.accountObject);
+                return self.getAccount();
+            } else {
+                // Login failed (bad id or password)
+                return null;
+            } 
+        })
+        .catch(function(error) {
+            // Error wrapped by $http containing config, data, status, statusMessage, etc.
+            //if (error.data)
+            throw error;
+        });
+    };
+
+    /**
      * @param {Object} credentials: {username, password}.
      */
     this.signin = function(credentials) {

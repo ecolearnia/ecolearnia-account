@@ -259,6 +259,10 @@ describe('AccountManager', function () {
 				});
 			});
 
+			it.skip('should remove account and all its associated auths', function (done) {
+
+			});
+
 			it('should removeByPK', function (done) {
 
 				testManager.removeByPK(testResources[0].uuid)

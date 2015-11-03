@@ -63,7 +63,7 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
             newAccount.auth = {
                 authSource: 'local',
                 username: 'test',
-                password: 'test'
+                security: { password: 'test' }
             };
             newAccount.$save();
         }

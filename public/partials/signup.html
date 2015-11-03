@@ -1,0 +1,78 @@
+<div >
+
+  <md-toolbar class="md-primary md-hue-2">
+    <div class="md-toolbar-tools">
+      <h2 class="md-flex">Signup</h2>
+    </div>
+  </md-toolbar>
+  
+  <md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
+
+    <form name="accountForm" ng-submit="signupCtrl.submit()">
+      <h3>Sign up</h3>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>First name</label>
+          <input required ng-model="signupCtrl.account.profile.givenName">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Last Name</label>
+          <input required ng-model="signupCtrl.account.profile.familyName">
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Email</label>
+          <input required ng-model="signupCtrl.temp.email">
+        </md-input-container>
+      </div>
+      <div layout layout-sm="column">
+        <md-input-container flex>
+          <label>Password</label>
+          <input required ng-model="signupCtrl.account.auth.security.password">
+        </md-input-container>
+        <md-input-container flex>
+          <label>Password confirmation</label>
+          <input required ng-model="signupCtrl.temp.passwordConf">
+        </md-input-container>
+      </div>
+      <label>Birthday</label>
+      <div layout layout-sm="column">
+
+        <md-input-container flex>
+          <md-select required ng-model="signupCtrl.temp.dob.month">
+            <md-option ng-repeat="month in signupCtrl.referencial.months" value="{{month.value}}">
+              {{month.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <md-select required ng-model="signupCtrl.temp.dob.day">
+            <md-option ng-repeat="day in signupCtrl.referencial.days track by $index" value="{{$index}}">
+              {{$index}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <md-input-container flex>
+          <input ng-model="signupCtrl.temp.dob.year" required ng-pattern="/^[0-9]{4}$/" >
+        </md-input-container>
+      </div>
+      <md-input-container flex>
+        <label>Gender</label>
+        <md-select ng-model="signupCtrl.account.profile.gender">
+          <md-option ng-repeat="gender in signupCtrl.referencial.genders" value="{{gender.value}}">
+            {{gender.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+
+      <div ng-if="signupCtrl.errorMessage" class="md-warn">
+        {{ signupCtrl.errorMessage }}
+        <span ng-model="signupCtrl.errorMessage" type="text" placeholder="">
+      </div>
+
+      <md-button class="md-raised" ng-click="signupCtrl.signup()">Sign up</md-button>
+    </form>
+  </md-content>
+  
+</div>

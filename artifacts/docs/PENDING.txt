@@ -1,16 +1,14 @@
 PENDING:
 
-- (OK) secure endpoints (simple RBAC)
-- (WIP) local login with password match
-- (WIP) auth & account manager UI (crud)
-- forgotten password
-- id and password for new account
 - Admin page list pagination
+- Profile page
+- Signup verify email
+- Retrieve forgotten password
 - token refresh endpoint
-- Account ETag
 - Clever signup
 - Facebook signup
 - Advanced Role permissions
+- Account ETag
 
 
 Leaned
