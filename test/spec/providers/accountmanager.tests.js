@@ -75,7 +75,7 @@ describe('AccountManager', function () {
 
 		beforeEach(function (done) {
 			// Create three for reading 
-			console.log("Adding 3 test records..");
+			//console.log("Adding 3 test records..");
 
 			testManager.add(testResources[0])
 			.then( function(model1) {
@@ -89,7 +89,7 @@ describe('AccountManager', function () {
 					.then( function(model3) {
 						createdUuids.push(model3.uuid);
 
-						console.log("Completed adding 3 tests records.");
+						//console.log("Completed adding 3 tests records.");
 						done();
 					})
 
@@ -282,7 +282,7 @@ describe('AccountManager', function () {
 
 
 	describe('Other operations', function () {	
-
+		var testResourceUuid;
 		beforeEach(function (done) {
 			delete_(testManager, {})
 			.then( function(model) {
@@ -291,6 +291,7 @@ describe('AccountManager', function () {
 				//delete resources[0].uuid;
 				testManager.add(generateTestAccount('TEST-kind', ['TEST-roles]'], ['test@mail.net']))
 				.then( function(model1) {
+					testResourceUuid = model1.uuid;
 					done();
 				})
 				.catch( function(error) {
@@ -329,6 +330,27 @@ describe('AccountManager', function () {
 
 			it.skip('should reject with bad something', function (done) {
 			});
+		});
+
+		describe('touch', function () {	
+			it('should update the lastLogin time', function (done) {
+
+				var timestamp = new Date().getTime();
+				testManager.touch(testResourceUuid)
+				.then( function(resourceUpdated) {
+					testManager.findByPK(testResourceUuid)
+					.then( function(resourceFound) {
+						expect(resourceFound.lastLogin).to.not.null;
+						expect(resourceFound.lastLogin.getTime() >= timestamp && resourceFound.lastLogin.getTime() <= new Date().getTime()).to.be.true;
+						//console.log('--Found--' + JSON.stringify(resourceFound, null, 2));
+					});
+					done();
+				})
+				.catch( function(error) {
+					done(error);
+				});
+			});
+
 		});
 
 	});

@@ -28,8 +28,9 @@ describe('GoogleAuthHelper', function () {
 			var expected = {
 			};
 
-			console.log( JSON.stringify(auth, null, 2));
+			expect(auth).to.not.null;
 			//expect(auth).to.deep.equals();
+			console.log( JSON.stringify(auth, null, 2));
 		});	
 	});
 
@@ -38,8 +39,8 @@ describe('GoogleAuthHelper', function () {
 		it('should build account model', function () {
 			var account = Helper.buildAccountModel(testdata);
 
+			expect(account).to.not.null;
 			console.log( JSON.stringify(account, null, 2));
-			//expect(account).to.not.null;
 		});	
 	});
 

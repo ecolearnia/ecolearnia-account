@@ -1,0 +1,44 @@
+
+  <md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
+    <md-card style="width: 300px" ng-controller="SigninController as signinCtrl">
+    <!-- social icons -->
+	    <md-toolbar class="md-primary md-hue-2">
+		    <div class="md-toolbar-tools">
+		      
+		      <h2 class="md-flex"><span>Login</span></h2> 
+		      <span flex></span>
+		      <md-icon md-svg-src="img/icons/ic_input_white_24px.svg"></md-icon>
+		    </div>
+		  </md-toolbar>
+
+      <md-card-content>
+        <md-button style="width:40%; background-color: #3b5998; color:#fff" ng-click="">Facebook</md-button>
+        <md-button style="width:40%; background-color: #DC4E41; color:#fff" ng-click="signinCtrl.redir('/auth/google?redir_url=/public/admin.html')">Google+</md-button>
+	    </md-input-container>
+
+      <md-card-content>
+        <md-input-container md-no-float>
+	      <!-- Use floating label instead of placeholder -->
+	      Username
+	      <input ng-model="signinCtrl.credentials.username" type="text" placeholder="">
+	    </md-input-container>
+
+	    <md-input-container md-no-float>
+	      Password
+	      <input ng-model="signinCtrl.credentials.password" type="text" placeholder="">
+	    </md-input-container>
+
+      <div ng-if="signinCtrl.errorMessage" class="md-warn">
+        {{ signinCtrl.errorMessage }}
+        <span ng-model="signinCtrl.errorMessage" type="text" placeholder="">
+      </div>
+
+
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="center">
+        <md-button ng-click="signinCtrl.signin()">Sign in</md-button>
+        <md-button ng-click="signinCtrl.go()">Sign up</md-button>
+      </div>
+    </md-card>
+    
+  </md-content>

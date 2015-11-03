@@ -32,6 +32,19 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
         return self.account;
     };
 
+    /**
+     * Removes an account
+     */
+    this.remove = function(account) {
+        AccountResource.remove({id:account.uuid}, function(data) {
+            // nothing to do, data is updated when async is returned.
+            // temp:
+            alert('Account: ' + account.displayName + ' was removed. Please refresh page');
+        }, function(error) {
+            alert(JSON.stringify(error));
+        });
+    };
+
     this.getAccount = function(id) {
     	self.account = AccountResource.get(id);
     	if (!self.account) {

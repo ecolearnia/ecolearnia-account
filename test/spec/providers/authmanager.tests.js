@@ -78,7 +78,7 @@ describe('AuthManager', function () {
 
 		beforeEach(function (done) {
 			// Create three for reading 
-			console.log("Adding 3 test records..");
+			//console.log("Adding 3 test records..");
 
 			testManager.add(testResources[0])
 			.then( function(model1) {
@@ -92,7 +92,7 @@ describe('AuthManager', function () {
 					.then( function(model3) {
 						createdUuids.push(model3.uuid);
 
-						console.log("Completed adding 3 tests records.");
+						//console.log("Completed adding 3 tests records.");
 						done();
 					})
 

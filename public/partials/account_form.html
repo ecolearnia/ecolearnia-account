@@ -2,12 +2,12 @@
 
   <md-toolbar class="md-primary md-hue-2">
     <div class="md-toolbar-tools">
-      <h2 class="md-flex"><a href="#/">Accounts</a></h2> 
-        
+      <h2 class="md-flex"><a href="#/">Accounts</a></h2>  <span style="margin: 1em">></span> 
+      <span ng-bind="accountCtrl.account.displayName" />
     </div>
   </md-toolbar>
   
-  <md-content layout-padding>
+  <md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
     <form name="accountForm" ng-submit="accountCtrl.submit()">
       <div layout layout-sm="column">
         <md-input-container flex>

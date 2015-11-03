@@ -11,4 +11,11 @@ db.auths.update({"username": "root"},
 		security: { password: 'root'}
 	} );
 
+
+db.accounts.update({"uuid": "8f3a93cd-a096-4388-a8e8-387edf4191b1"}, 
+	{ $set: {
+		"profile": {"familyName": "NEW3"}
+	}
+	});
+
 (authSource = "local" AND authId = "NONe") OR (authSource = "local" AND username="root")

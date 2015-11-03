@@ -9,16 +9,18 @@
     </div>
   </md-toolbar>
 
+  <md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
         <thead>
             <tr>
-              <th class="mdl-data-table__cell--non-numeric">Pic</th>
-              <th>Name</th>
-              <th>Status</th>
-              <th>Roles</th>
+              <th></th>
+              <th class="mdl-data-table__cell--non-numeric">Name</th>
+              <th class="mdl-data-table__cell--non-numeric">Status</th>
+              <th class="mdl-data-table__cell--non-numeric">Roles</th>
               <th>Last Visit</th>
               <th>Since</th>
-              <th>Action</th>
+              <th>Modifed</th>
+              <th class="mdl-data-table__cell--non-numeric">Action</th>
             </tr>
         </thead>
       <tbody>
@@ -29,7 +31,11 @@
             <td>{{account.roles}}</td>
             <td>{{account.lastLogin | date:'shortDate'}}</td>
             <td>{{account.createdAt | date:'shortDate'}}</td>
-            <td><a href="#/account/{{account.uuid}}/form" >Edit</a></td>
+            <td>{{account.modifiedAt | date:'shortDate'}}</td>
+            <td>
+              <a href="#/account/{{account.uuid}}/form" >Edit</a>
+              <a ng-click="accountCtrl.remove(account.uuid)" >Delete</a>
+            </td>
         </tr>
     </tbody>
     <tfoot>
@@ -38,5 +44,5 @@
       </tr>
     </tfoot>
     </table>
-  
+  </md-content>
 </div>
