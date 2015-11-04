@@ -1,7 +1,8 @@
 PENDING:
 
-- Admin page list pagination
+- admin advanced query (with pagination) 
 - Profile page
+- Upload profile image
 - Signup verify email
 - Retrieve forgotten password
 - token refresh endpoint
@@ -11,5 +12,5 @@ PENDING:
 - Account ETag
 
 
-Leaned
+Learned
 - Redirect to site URL >> NOT Redirecting (needed to add cookie.path '/')

@@ -52,18 +52,13 @@ app.controller('SignupController', ['$window', '$location', 'AuthService',
             day: null,
             year: null
         }
-    } // 
-
-    self.credentials = {
-        username:'',
-        password:''
     };
 
     self.referencial = {
         genders: [],
         days: [],
         months: [],
-    }
+    };
     
     loadReferencials();
 
@@ -98,7 +93,9 @@ app.controller('SignupController', ['$window', '$location', 'AuthService',
         $window.location.href = path;
     };
 
-
+    /**
+     * Calls signup remote endpoint
+     */
     this.signup = function() {
         self.account.profile.emails = [self.temp.email];
         self.account.profile.dob = new Date(self.temp.dob.year, self.temp.dob.month, self.temp.dob.day);

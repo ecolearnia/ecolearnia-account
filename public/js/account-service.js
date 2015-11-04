@@ -17,7 +17,8 @@ accountModule.factory('AccountResource', ['$resource', 'AuthService',
 	        'query': { method:'GET', isArray: true, headers: { 'Authorization': token } },
 	        'remove': { method:'DELETE', headers: { 'Authorization': token } },
 	        'deleve': { method:'DELETE', headers: { 'Authorization': token } },
-	        'update': { method:'PUT', headers: { 'Authorization': token } }
+	        'update': { method:'PUT', headers: { 'Authorization': token } },
+	        'query2': { method:'GET', headers: { 'Authorization': token }, paramDefaults: { 'meta': 'true'} }
 	    });
  
 }]);

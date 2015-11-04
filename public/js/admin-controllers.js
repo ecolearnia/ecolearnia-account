@@ -5,6 +5,7 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
     var self = this;
     self.accounts = [];
     self.account;
+    self.queryResult;
 
     if ($routeParams.accountId && $routeParams.accountId != 'new') {
     	self.account = AccountResource.get({id: $routeParams.accountId}, function(data) {
@@ -14,15 +15,19 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
         });
     } else {
 	    // initialize
-	    self.accounts = AccountResource.query(function(data) {
-            // nothing to do, data is updated when async is returned.
-        }, function(error) {
-            alert(JSON.stringify(error));
-        });
+	    query();
 	}
 
     this.go = function(path) {
-        $location.path( path );
+        return $location.path( path );
+    };
+
+    this.goToPage = function(pageIdx) {
+        var retval = '/?_page=' + pageIdx;
+        if (self.queryResult.limit) {
+            retval += '&limit=' + self.queryResult.limit;
+        }
+        $location.path('/').search('_page', pageIdx).search('_limit', self.queryResult.limit);
     };
 
     /**
@@ -67,6 +72,25 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
             };
             newAccount.$save();
         }
+    };
+
+
+    function query(criteria) {
+        var qparms = $location.search();
+        var queryArgs = {
+            _meta: 'true',
+            _page: qparms._page,
+            _limit: qparms._limit
+        };
+
+        // initialize
+        self.accounts = AccountResource.query2(queryArgs, function(data) {
+            self.queryResult = data;
+            self.queryResult.numPages = Math.ceil(self.queryResult.totalHits / self.queryResult.limit);
+            self.accounts = data.documents;
+        }, function(error) {
+            alert(JSON.stringify(error));
+        });
     };
 
 }]);

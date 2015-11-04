@@ -11,18 +11,18 @@
 
   <md-content class="md-padding" layout="row" layout-align="center center" ng-cloak>
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
-        <thead>
-            <tr>
-              <th></th>
-              <th class="mdl-data-table__cell--non-numeric">Name</th>
-              <th class="mdl-data-table__cell--non-numeric">Status</th>
-              <th class="mdl-data-table__cell--non-numeric">Roles</th>
-              <th>Last Visit</th>
-              <th>Since</th>
-              <th>Modifed</th>
-              <th class="mdl-data-table__cell--non-numeric">Action</th>
-            </tr>
-        </thead>
+      <thead>
+          <tr>
+            <th></th>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Status</th>
+            <th class="mdl-data-table__cell--non-numeric">Roles</th>
+            <th>Last Visit</th>
+            <th>Since</th>
+            <th>Modifed</th>
+            <th class="mdl-data-table__cell--non-numeric">Action</th>
+          </tr>
+      </thead>
       <tbody>
         <tr class="ng-cloack" ng-repeat="account in accountCtrl.accounts">
             <td><img ng-show="account.imageUrl != undefined" src={{account.imageUrl}} /></td>
@@ -40,7 +40,11 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="7">Pagination</td>
+        <td colspan="8" style="text-align: center">
+          <span  ng-repeat="n in [].constructor(accountCtrl.queryResult.numPages) track by $index">
+            <a ng-click="accountCtrl.goToPage($index)" class="md-raised md-primary">{{$index + 1}}</a>
+          </span>
+        </td>
       </tr>
     </tfoot>
     </table>
