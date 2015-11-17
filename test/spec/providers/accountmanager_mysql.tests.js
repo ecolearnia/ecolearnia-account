@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var config = require('ecofyjs-config');
-var DbUtils = require('../../../lib/utils/mongoutils').MongoUtils;
+var DbUtils = require('../../../lib/utils/sequelizeutils').SequelizeUtils;
 
 
 // Library under test
@@ -19,10 +19,14 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe('AccountManager', function () {
+describe('AccountManager-mysql', function () {
 
-	before(function(){
-		DbUtils.connect('mongodb://localhost/test_ecolearnia');
+	before(function(done){
+		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');
+		sequelize.sync().then(function () {
+			console.log('** Sequelize sync-ed');
+			done();
+		});
 	});
 
 	var testManager;
@@ -34,7 +38,7 @@ describe('AccountManager', function () {
 		];
 
 	beforeEach(function () {
-		testManager = manager.getManager();
+		testManager = manager.getManager('sequelize');
 	});
 
 	describe('Initialize', function () {
@@ -47,9 +51,9 @@ describe('AccountManager', function () {
 
 	describe('CRUD operations', function () {
 
-		describe('Create resource', function () {
+		describe.skip('Create resource', function () {
 
-			it.skip('should add (skipping this test, creation is already verified by other tests)', function (done) {
+			it('should add', function (done) {
 
 				testManager.add(testResources[0])
 				.then( function(model) {
@@ -125,7 +129,7 @@ describe('AccountManager', function () {
 				});
 			});
 
-			it('should findByPK', function (done) {
+			it.only('should findByPK', function (done) {
 				testManager.findByPK(createdUuids[0])
 				.then( function(model) {
 					expect(model.displayName).to.equal(testResources[0].displayName);

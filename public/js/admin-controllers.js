@@ -4,8 +4,9 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
 {
     var self = this;
     self.accounts = [];
-    self.account;
-    self.queryResult;
+    self.account = null;
+    self.queryCriteria = null;
+    self.queryResult = null;
 
     if ($routeParams.accountId && $routeParams.accountId != 'new') {
     	self.account = AccountResource.get({id: $routeParams.accountId}, function(data) {
@@ -50,6 +51,10 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
         });
     };
 
+    this.doQuery = function(id) {
+        query();
+    };
+
     this.getAccount = function(id) {
     	self.account = AccountResource.get(id);
     	if (!self.account) {
@@ -73,6 +78,7 @@ app.controller('AccountController', ['$cookies', '$routeParams', '$location', 'A
             newAccount.$save();
         }
     };
+
 
 
     function query(criteria) {

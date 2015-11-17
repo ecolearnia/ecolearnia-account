@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var config = require('ecofyjs-config');
-var DbUtils = require('../../../lib/utils/mongoutils').MongoUtils;
+var DbUtils = require('../../../lib/utils/sequelizeutils').SequelizeUtils;
 
 
 // Library under test
@@ -22,10 +22,14 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe('AuthManager', function () {
+describe('AuthManager-mysql', function () {
 
-	before(function(){
-		DbUtils.connect('mongodb://localhost/test_ecolearnia');
+	before(function(done){
+		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');
+		sequelize.sync().then(function () {
+			console.log('** Sequelize sync-ed');
+			done();
+		});
 	});
 
 	var testManager;
@@ -37,7 +41,7 @@ describe('AuthManager', function () {
 		];
 
 	beforeEach(function () {
-		testManager = manager.getManager();
+		testManager = manager.getManager('sequelize');
 	});
 
 	describe('Initialize', function () {
@@ -286,7 +290,7 @@ describe('AuthManager', function () {
 
 	describe('Other operations', function () {
 
-		describe('findFromCredentials', function () {
+		describe.only('findFromCredentials', function () {
 
 			beforeEach(function (done) {
 				// Prepare

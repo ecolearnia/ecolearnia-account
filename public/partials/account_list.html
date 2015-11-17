@@ -13,6 +13,17 @@
     <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
       <thead>
           <tr>
+            <td colspan="8">
+              <span>
+                Search: <input ng-model="accountCtrl.queryCriteria.name" />
+                status: <input ng-model="accountCtrl.queryCriteria.status" />
+                role: <input ng-model="accountCtrl.queryCriteria.role" />
+              </span>
+              <span flex></span>
+              <span><md-button class="md-primary" ng-click="accountCtrl.doQuery()">Query</md-button></span>
+            </td>
+          </tr>
+          <tr>
             <th></th>
             <th class="mdl-data-table__cell--non-numeric">Name</th>
             <th class="mdl-data-table__cell--non-numeric">Status</th>

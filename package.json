@@ -39,8 +39,10 @@
     "jsonwebtoken": "^5.0.5",
     "lodash": "^3.10.1",
     "mongoose": "^4.1.7",
+    "mysql": "^2.9.0",
     "nconf": "^0.7.2",
     "node-uuid": "^1.4.3",
+    "sequelize": "^3.13.0",
     "vision": "^3.0.0"
   },
   "devDependencies": {
