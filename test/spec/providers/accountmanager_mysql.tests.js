@@ -19,7 +19,7 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe('AccountManager-mysql', function () {
+describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function () {
 
 	before(function(done){
 		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');

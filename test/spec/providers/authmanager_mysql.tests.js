@@ -22,7 +22,7 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe('AuthManager-mysql', function () {
+describe.skip('AuthManager-mysql (SKIPPING: configured for mongo)', function () {
 
 	before(function(done){
 		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');
@@ -290,7 +290,7 @@ describe('AuthManager-mysql', function () {
 
 	describe('Other operations', function () {
 
-		describe.only('findFromCredentials', function () {
+		describe('findFromCredentials', function () {
 
 			beforeEach(function (done) {
 				// Prepare
@@ -441,7 +441,7 @@ describe('AuthManager-mysql', function () {
 		testManager.getAccountManager().add(testaccountdata)
 		.then( function(model1) {
 			// @todo - add account model
-			testManager.add(generateTestAuth(authSource, authId, status, model1._id))
+			testManager.add(generateTestAuth(authSource, authId, status, model1.uuid))
 			.then( function(model2) {
 				callback(null, model2);
 			});
@@ -459,7 +459,7 @@ describe('AuthManager-mysql', function () {
 		testdata.status = status;
 
 		if (accountOid) {
-			testdata.account = accountOid;
+			testdata.AccountUuid = accountOid;
 		}
 
 		return testdata;

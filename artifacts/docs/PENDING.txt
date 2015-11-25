@@ -1,6 +1,8 @@
 PENDING:
 
-- admin advanced query (with pagination) 
+WIP: Sequelize: Fill AccountUuid column
+- Sequelize adapter
+- admin advanced query (with pagination)
 - Profile page
 - Upload profile image
 - Signup verify email
