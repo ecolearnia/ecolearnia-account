@@ -1,20 +1,21 @@
 {
     "kind": "basic",
-    
-    "roles": ["user"], 
+
+    "roles": ["user"],
     "status": "OK",
-    "displayName": "John Doe", 
-    "imageUrl": "https://lh4.googleusercontent.com/-ujilfL1okNw/AAAAAAAAAAI/AAAAAAAAAx8/a55mNf2I9y8/photo.jpg?sz=50", 
+    "displayName": "John Doe",
+    "imageUrl": "https://lh4.googleusercontent.com/-ujilfL1okNw/AAAAAAAAAAI/AAAAAAAAAx8/a55mNf2I9y8/photo.jpg?sz=50",
 
     "profile": {
         "familyName": "Doe",
         "givenName": "John",
         "middleName": "",
         "highlight": "Ecofy is beautiful",
-        "dob": "2010-05-25", 
+        "dob": "2010-05-25",
         "gender": "male",
         "phone": "555-555-555",
         "mobile": "333-333-333",
+        "primaryEmail": "jdoe@test.com",
         "emails": ["jdoe@test.com"],
         "timezone": "America",
         "permalink": "",

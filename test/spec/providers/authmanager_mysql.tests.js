@@ -11,7 +11,7 @@ var DbUtils = require('../../../lib/utils/sequelizeutils').SequelizeUtils;
 
 
 // Library under test
-var manager = require('../../../lib/providers/authmanager');
+var manager = require('../../../lib/providers/authmanagersequelize');
 
 // Test data
 var testauthdata = require('../../mock/auth.testdata.json');
@@ -22,7 +22,7 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe.skip('AuthManager-mysql (SKIPPING: configured for mongo)', function () {
+describe('AuthManager-mysql (Requires MYSQL)', function () {
 
 	before(function(done){
 		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');

@@ -11,7 +11,7 @@ var DbUtils = require('../../../lib/utils/sequelizeutils').SequelizeUtils;
 
 
 // Library under test
-var manager = require('../../../lib/providers/accountmanager');
+var manager = require('../../../lib/providers/accountmanagersequelize');
 
 // Test data
 var testaccountdata = require('../../mock/account.testdata.json');
@@ -19,7 +19,7 @@ var testaccountdata = require('../../mock/account.testdata.json');
 
 config.load('./config/test.conf.json');
 
-describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function () {
+describe('AccountManager-mysql  (SKIPPING: configured for mongo)', function () {
 
 	before(function(done){
 		var sequelize = DbUtils.connect('mysql://ecolearnia:eco@localhost:3306/eco_learnia');
@@ -129,7 +129,7 @@ describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function
 				});
 			});
 
-			it.only('should findByPK', function (done) {
+			it('should findByPK', function (done) {
 				testManager.findByPK(createdUuids[0])
 				.then( function(model) {
 					expect(model.displayName).to.equal(testResources[0].displayName);
@@ -297,7 +297,7 @@ describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function
 
 				// Create one for updating
 				//delete resources[0].uuid;
-				testManager.add(generateTestAccount('TEST-kind', ['TEST-roles]'], ['test@mail.net']))
+				testManager.add(generateTestAccount('TEST-kind', ['TEST-roles]'], 'test@mail.net'))
 				.then( function(model1) {
 					testResourceUuid = model1.uuid;
 					done();
@@ -343,13 +343,18 @@ describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function
 		describe('touch', function () {
 			it('should update the lastLogin time', function (done) {
 
-				var timestamp = new Date().getTime();
+				var now = new Date();
+				now.setMilliseconds(0); // rounding Sequelize's DateTime does not support milliseconds
+				var timestamp = now.getTime();
 				testManager.touch(testResourceUuid)
 				.then( function(resourceUpdated) {
 					testManager.findByPK(testResourceUuid)
 					.then( function(resourceFound) {
 						expect(resourceFound.lastLogin).to.not.null;
-						expect(resourceFound.lastLogin.getTime() >= timestamp && resourceFound.lastLogin.getTime() <= new Date().getTime()).to.be.true;
+						var currTime =  new Date().getTime();
+						var inbetween = resourceFound.lastLogin.getTime() >= timestamp
+							&& resourceFound.lastLogin.getTime() <= currTime;
+						expect(inbetween).to.be.true;
 						//console.log('--Found--' + JSON.stringify(resourceFound, null, 2));
 					});
 					done();
@@ -363,13 +368,13 @@ describe.skip('AccountManager-mysql  (SKIPPING: configured for mongo)', function
 
 	});
 
-	function generateTestAccount(kind, roles, emails) {
+	function generateTestAccount(kind, roles, email) {
 		var testdata = lodash.cloneDeep(testaccountdata);
 		delete testdata.uuid;
 		testdata.kind = kind;
 		testdata.roles = roles;
-		if (emails) {
-			testdata.profile.emails = emails;
+		if (email) {
+			testdata.profile.primaryEmail = email;
 		}
 
 		return testdata;
